@@ -22,6 +22,7 @@ data(movies)
 
 It's always a good idea to do some recon work first. What do the data look like? How many observations and variables do we have? What are the variable names?
 
+There are multiple genres of movies, with varying dates of origin. To determine variables we will comb through the data and find the mean of the budget for a movie and the ratings.   
 
 ```{r}
 # View() opens the data in another window. 'head(movies)' will show the first few rows.
@@ -33,19 +34,45 @@ It's always a good idea to do some recon work first. What do the data look like?
 dim(movies)     # always rows x columns
 names(movies)   # a good way to keep track of variable names for later use
 ```
+  
+  
+Movie Rating  
+  
+```{r}
+mean(movies$rating)
+```
+
+  Using this chart we can determine the average rating of all the movies in a chunk of 58788 observations. The average is 5.93285.  
+  
+```{r}
+median(movies$rating)
+```  
+  Using this chart we can determine the median of all the movies in a chunk of 58788 observations. The average is 6.1.
+  To determine the average movie budget we utilized the same formatted r block.
+  
+```{r}
+median(newdata)
+``` 
+```{r}
+newdata <- na.omit(movies$budget)
+```  
+ 
+ Using this chart we can see that the average movie budget is 3000000.
+
+
 
 
 ## Motivation for Wrangling
 
 Now that we have a sense of our data, we can start to dig a little deeper into the details of things. One of the main reasons data wrangling is so important to statisticians and data scientists is that we often collect waaaay more data than we actually need to answer a particular question. You may want to ask the following questions:
 
-- What is the average movie rating?
+- What is the average movie rating? The average movie rating is 5.9
 
-- What is the median budget for a movie?
+- What is the median budget for a movie? The median budget is 30000000.
 
 But after looking at all of the movies recorded here, the more precise questions might turn out to be:
 
-- What is the average rating *of movies longer than 60 minutes?*
+- What is the average rating *of movies longer than 60 minutes?* 
 
 - What is the median budget *of animated films compared to documentaries?*
 
