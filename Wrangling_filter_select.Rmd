@@ -51,12 +51,10 @@ median(movies$rating)
   To determine the average movie budget we utilized the same formatted r block.
   
 ```{r}
-median(newdata)
-``` 
-```{r}
+newdata <- movies
 newdata <- na.omit(movies$budget)
 ```  
- 
+
  Using this chart we can see that the average movie budget is 3000000.
 
 
@@ -229,34 +227,65 @@ See if you can answer these questions:
 1. How many movies were released in 1995?
 
 ```{r}
+movies_1995 <- movies %>%    
+  filter(year >= 1995)
 
+movies_1995
 ```
+  
+According to the above chart, 58,788 movies were released in 1995.
 
 2. Which Comedies with an MPAA rating, over 120 minutes have a rating above 8?
 
-```{r}
 
+```{r}
+movies_comedies_rating_120_8 <- movies %>%
+  filter(Comedy == 1 & length >= 120 & rating >= 8.0 & mpaa %in% c("R", "PG-13","PG", "G"))
+movies_comedies_rating_120_8
 ```
+  
+10 comedy movies displayed in this chart have an MPAA over 8, while being over 120 minutes long.
+
 
 3. Create a subset of only Harry Potter movies with the title, rating, budget, and votes. Which movies are included in this data? Which is highest rated? Which has the most votes on imdb.com?
 
 ```{r}
+moviesHP <- movies %>%    
+  filter(year >= "Harry Potter") %>%
+  drop_na(budget) %>%
+  select(title, rating, budget, votes)
 
+movies
 ```
+  
+According to this chart there are 8 Harry Potter movies with the highest rated movie, Deathly Hallows Part 2, having the most votes on imdb.com.
+
 
 4. What is the highest budget for a movie that is an Animation or Comedy with at least 100 votes?
 
 ```{r}
+moviesAction <- movies %>%    
+  filter(year >= 2000 & Action == 1) %>%
+  drop_na(budget) %>%
+  select(title, rating, budget, votes)
 
+movies
 ```
+  
+According to this chart there are 58,788 action movies that qualify with over 100 votes. 
+
 
 5. Is your favorite movie in the dataset? What other questions could you ask or answer using `filter()`, `select()`, and `arrange()`?
 
 ```{r}
+favorite_movie <- movies %>% 
+  filter(Deadpool) %>% 
+  select(Deadpool)
 
+favorite_movie
 ```
-
-
+  
+No, my favorite movie is not in this list of movies.
 
 
 
